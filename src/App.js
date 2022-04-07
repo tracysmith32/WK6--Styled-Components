@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+
 import {
 	Container,
 	Image,
@@ -9,7 +9,9 @@ import {
 	H1,
 	H3,
 	H5,
-} from './App.styles';
+} from '../src/styles/App.styles';
+import Navbar from '../src/components/Navbar';
+import Buttons from './components/Button';
 
 const App = () => {
 	const [characters, setCharacters] = useState([]);
@@ -36,23 +38,24 @@ const App = () => {
 	}, []);
 
 	return (
-		<Container>
-			{error && <p>{error}</p>}
-			<Wrapper>
-				{characters.map((character) => (
-					<Tile key={character.char_id}>
-						<H1>{character.name}</H1>
-						<H3>{character.occupation}</H3>
-						<Image src={character.img} alt="breaking bad characters"></Image>
-						<H5>{character.status}</H5>
-						<Button backgroundColor="crimson">Add to Favourites</Button>
-					</Tile>
-				))}
-			</Wrapper>
-			<Button backgroundColor="red">Add</Button>
-			<Button backgroundColor="green">Add</Button>
-			<Button backgroundColor="blue">Add</Button>
-		</Container>
+		<>
+			<Navbar />
+			<Container>
+				{error && <p>{error}</p>}
+				<Wrapper>
+					{characters.map((character) => (
+						<Tile key={character.char_id}>
+							<H1>{character.name}</H1>
+							<H3>{character.occupation}</H3>
+							<Image src={character.img} alt="breaking bad characters"></Image>
+							<H5>{character.status}</H5>
+							<Button backgroundColor="crimson">Add to Favourites</Button>
+						</Tile>
+					))}
+				</Wrapper>
+			</Container>
+			<Buttons />
+		</>
 	);
 };
 
